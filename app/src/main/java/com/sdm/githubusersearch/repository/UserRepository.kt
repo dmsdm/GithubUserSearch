@@ -23,20 +23,6 @@ class UserRepository @Inject constructor(
     private val githubService: GithubService
 ) {
 
-    fun loadUser(login: String): LiveData<Resource<User>> {
-        return object : NetworkBoundResource<User, User>(appExecutors) {
-            override fun saveCallResult(item: User) {
-                userDao.insert(item)
-            }
-
-            override fun shouldFetch(data: User?) = data == null
-
-            override fun loadFromDb() = userDao.findByLogin(login)
-
-            override fun createCall() = githubService.getUser(login)
-        }.asLiveData()
-    }
-
     fun searchNextPage(query: String): LiveData<Resource<Boolean>> {
         val fetchNextSearchPageTask = FetchNextSearchPageTask(
                 query = query,

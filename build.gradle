@@ -16,7 +16,6 @@ allprojects {
     addRepos(repositories)
 }
 
-
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

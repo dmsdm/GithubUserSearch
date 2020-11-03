@@ -10,10 +10,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.sdm.githubusersearch.repository.User
-import javax.inject.Inject
 
 class UserAdapter(
-    appExecutors: AppExecutors,
     private val callback: ((User, ImageView) -> Unit)?
 ) : ListAdapter<User, UserAdapter.ViewHolder>(
     object : DiffUtil.ItemCallback<User>() {

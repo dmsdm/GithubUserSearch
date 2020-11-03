@@ -15,8 +15,6 @@ class SearchViewModel @Inject constructor(userRepository: UserRepository) : View
     private val _query = MutableLiveData<String>()
     private val nextPageHandler = NextPageHandler(userRepository)
 
-    val query : LiveData<String> = _query
-
     val results: LiveData<Resource<List<User>>> = _query.switchMap { search ->
         if (search.isBlank()) {
             AbsentLiveData.create()
@@ -42,12 +40,6 @@ class SearchViewModel @Inject constructor(userRepository: UserRepository) : View
             if (it.isNotBlank()) {
                 nextPageHandler.queryNextPage(it)
             }
-        }
-    }
-
-    fun refresh() {
-        _query.value?.let {
-            _query.value = it
         }
     }
 
